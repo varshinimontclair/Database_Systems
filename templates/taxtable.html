@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Table</title>
+</head>
+<body>
+
+<h3>Summary Table</h3>
+
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Company</th>
+        <th>Amount</th>
+        <th>PaymentDate</th>
+        <th>Status</th>
+        <th>DueDate</th>
+    </tr>
+    {% for record in filtered_data %}
+        <tr>
+            <td>{{ record['Id'] }}</td>
+            <td>{{ record['Company'] }}</td>
+            <td>{{ record['Amount'] }}</td>
+            <td>{{ record['PaymentDate'] }}</td>
+            <td>{{ record['Status'] }}</td>
+            <td>{{ record['DueDate'] }}</td>
+        </tr>
+    {% endfor %}
+
+<!-- Display the total sum below the table -->
+
+    <tr>Total Sum: {{ total_sum }}</tr><br>
+    <tr>Tax Rate: {{ tax_Rate }}</tr><br>
+    <tr>Tax Due: {{ tax_due }}</tr>
+</table>
+</body> 
+</html>
