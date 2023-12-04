@@ -2,35 +2,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tax Office Form</title>
-    <!-- Add your CSS styles here -->
-    <style>
-        /* Add your styles for the form here */
-        #summaryTable {
-            margin-top: 20px;
-            border-collapse: collapse;
-            width: 100%;
-        }
+  <style>
+    #summaryTableDiv {
+  margin-top: 20px;
+  max-height: 400px; /* Set the maximum height for the div */
+  overflow-y: auto; /* Enable vertical scroll */
+  border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+  }
+  #summaryTable {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+  }
+    #taxTableDiv {
+    margin-top: 20px;
+    max-height: 400px; /* Set the maximum height for the div */
+    overflow-y: auto; /* Enable vertical scroll */
+    border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+    }
 
-        #summaryTable th, #summaryTable td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        #taxTable {
-            margin-top: 20px;
-            border-collapse: collapse;
-            width: 100%;
-        }
 
-        #taxTable th, #taxTable td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-    </style>
+  #summaryTable th, #summaryTable td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+  }
+  #taxTable {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+  }
+
+  #taxTable th, #taxTable td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+  }
+  </style>
+    
 </head>
 <body>
 
