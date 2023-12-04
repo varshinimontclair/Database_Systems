@@ -7,6 +7,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tax Office Form</title>
   <style>
+    /* Reset some default styles */
+
+/* Add your existing styles */
+
+.editable {
+  cursor: pointer;
+  text-decoration: underline;
+  color: blue;
+}
+
+.editable input {
+  border: none;
+  outline: none;
+}
+
+
+
+
+/* Body styles */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Header styles */
+h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Links styles */
+a {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+a:hover {
+  background-color: #45a049;
+}
     #summaryTableDiv {
   margin-top: 20px;
   max-height: 400px; /* Set the maximum height for the div */
@@ -171,8 +230,6 @@
                 }
             }
         };
-
-
         // Send the data
         xhr.send(jsonData);
         
@@ -191,8 +248,11 @@
             // If another row is already in edit mode, cancel it
             cancelEdit();
         }
+        var confirmed = confirm('Tap on the field you want to edit');
+        if (confirmed) {
 
         editingRowId = rowId;
+        }
 
         // Get the row element by ID
         var row = document.getElementById(rowId);
@@ -201,7 +261,7 @@
         var cells = row.querySelectorAll('td:not(:last-child)');
         cells.forEach(function(cell) {
             var content = cell.innerHTML;
-            cell.innerHTML = `<input type="text" value="${content}">`;
+            // cell.innerHTML = `<input type="text" value="${content}">`;
         });
 
         // Hide the "Edit" button and show the "Save" button
@@ -274,11 +334,12 @@
                 var nextYear = currentYear + 1;
                 
                 // Populate the dropdown with the due dates
-                document.write(`<option value="04-15-${currentYear}">01-15-${currentYear}</option>`);
-                document.write(`<option value="06-15-${currentYear}">06-15-${currentYear}</option>`);
-                document.write(`<option value="09-15-${currentYear}">09-15-${currentYear}</option>`);
-                document.write(`<option value="01-15-${nextYear}">01-15-${nextYear}</option>`);
-            </script>
+                document.write(`<option value="">Select Due Date</option>`);
+                document.write(`<option value="04-15-${currentYear}">April 15, ${currentYear}</option>`);
+                document.write(`<option value="06-15-${currentYear}">June 15, ${currentYear}</option>`);
+                document.write(`<option value="09-15-${currentYear}">September 15, ${currentYear}</option>`);
+                document.write(`<option value="01-15-${nextYear}">January 15, ${nextYear}</option>`);
+                </script>
         </select>
 </form>
 

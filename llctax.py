@@ -1,12 +1,12 @@
 
-from flask import Flask, render_template,request, redirect, jsonify, flash,session
+from flask import Flask, render_template,request, redirect, jsonify,session
 from decimal import Decimal
 import pymysql
 
 
 
 app = Flask(__name__)
-app.secret_key = 'somethnig'
+
 
 # Database configuration
 
