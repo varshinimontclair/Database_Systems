@@ -2,107 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tax Office Form</title>
-  <style>
-    /* Reset some default styles */
-
-/* Add your existing styles */
-
-.editable {
-  cursor: pointer;
-  text-decoration: underline;
-  color: blue;
-}
-
-.editable input {
-  border: none;
-  outline: none;
-}
-
-
-
-
-/* Body styles */
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-/* Header styles */
-h1 {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-
-
-th, td {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-/* Links styles */
-a {
-  display: inline-block;
-  margin: 10px;
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-}
-
-a:hover {
-  background-color: #45a049;
-}
-    #summaryTableDiv {
-  margin-top: 20px;
-  max-height: 400px; /* Set the maximum height for the div */
-  overflow-y: auto; /* Enable vertical scroll */
-  border: 1px solid #ccc; /* Optional: Add a border for better visibility */
-  }
-  #summaryTable {
-      margin-top: 20px;
-      border-collapse: collapse;
-      width: 100%;
-  }
-    #taxTableDiv {
-    margin-top: 20px;
-    max-height: 400px; /* Set the maximum height for the div */
-    overflow-y: auto; /* Enable vertical scroll */
-    border: 1px solid #ccc; /* Optional: Add a border for better visibility */
-    }
-
-
-  #summaryTable th, #summaryTable td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: left;
-  }
-  #taxTable {
-      margin-top: 20px;
-      border-collapse: collapse;
-      width: 100%;
-  }
-
-  #taxTable th, #taxTable td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: left;
-  }
-  </style>
-    
 </head>
 <body>
 
@@ -166,8 +69,8 @@ a:hover {
                 <td class="editable" data-rowid="{{ tax.Id }}" data-columnname="Status" onclick="makeEditable(this, 'statusid')">{{ tax.Status }}</td>
                 <td class="editable" data-rowid="{{ tax.Id }}" data-columnname="DueDate" onclick="makeEditable(this, 'duedateid')">{{ tax.DueDate }}</td>
                 <td>
-                    <button type="submit" {% if editing %}style="display:none;"{% endif %}>Save</button>
                     <button type="button" onclick="editRow('{{ tax.Id }}')">Edit</button>
+                    <button type="submit" {% if editing %}style="display:none;"{% endif %}>Save</button>
                     <form action="/delete/{{ tax.Id }}" method="post" onsubmit="return confirm('Are you sure you want to delete this record?')">
                         <button type="submit">Delete</button>
                     </form> 
@@ -230,19 +133,17 @@ a:hover {
                 }
             }
         };
+
+
         // Send the data
         xhr.send(jsonData);
         
         
 
     }
-
-
 </script>
-
 <script>
     var editingRowId = null;
-
     function editRow(rowId) {
         if (editingRowId !== null) {
             // If another row is already in edit mode, cancel it
@@ -250,62 +151,47 @@ a:hover {
         }
         var confirmed = confirm('Tap on the field you want to edit');
         if (confirmed) {
-
         editingRowId = rowId;
         }
-
         // Get the row element by ID
         var row = document.getElementById(rowId);
-
         // Show input fields and hide content
         var cells = row.querySelectorAll('td:not(:last-child)');
         cells.forEach(function(cell) {
             var content = cell.innerHTML;
             // cell.innerHTML = `<input type="text" value="${content}">`;
         });
-
         // Hide the "Edit" button and show the "Save" button
         var saveButton = row.querySelector('button[type="submit"]');
         var editButton = row.querySelector('button[type="button"]');
         saveButton.style.display = "inline-block";
         editButton.style.display = "none";
     }
-
     function cancelEdit() {
         if (editingRowId !== null) {
             // Get the row element by ID
             var row = document.getElementById(editingRowId);
-
             // Revert changes
             var cells = row.querySelectorAll('td:not(:last-child)');
             cells.forEach(function(cell) {
                 cell.innerHTML = cell.querySelector('input').value;
             });
-
             // Show the "Edit" button and hide the "Save" button
             var saveButton = row.querySelector('button[type="submit"]');
             var editButton = row.querySelector('button[type="button"]');
             saveButton.style.display = "none";
             editButton.style.display = "inline-block";
-
             editingRowId = null;
         }
     }
-
 </script>
-
 <script>
     document.getElementById('taxForm').addEventListener('submit', function () {
         // Your logic to refresh the page after saving
         location.reload();
     });
-</script>
-
-
-    
+</script>   
 <br></br>
-
-
 <form action="/filter" method="post">
     <!-- Tax rate field -->
     <h3>Please enter the tax rate and filter based on the due date</h3>
@@ -334,12 +220,11 @@ a:hover {
                 var nextYear = currentYear + 1;
                 
                 // Populate the dropdown with the due dates
-                document.write(`<option value="">Select Due Date</option>`);
-                document.write(`<option value="04-15-${currentYear}">April 15, ${currentYear}</option>`);
-                document.write(`<option value="06-15-${currentYear}">June 15, ${currentYear}</option>`);
-                document.write(`<option value="09-15-${currentYear}">September 15, ${currentYear}</option>`);
-                document.write(`<option value="01-15-${nextYear}">January 15, ${nextYear}</option>`);
-                </script>
+                document.write(`<option value="04-15-${currentYear}">01-15-${currentYear}</option>`);
+                document.write(`<option value="06-15-${currentYear}">06-15-${currentYear}</option>`);
+                document.write(`<option value="09-15-${currentYear}">09-15-${currentYear}</option>`);
+                document.write(`<option value="01-15-${nextYear}">01-15-${nextYear}</option>`);
+            </script>
         </select>
 </form>
 

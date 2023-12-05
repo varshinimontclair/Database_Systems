@@ -30,11 +30,15 @@ def save():
         PaymentDate = request.form['PaymentDate']
         Status = request.form['Status']
         DueDate = request.form['DueDate']
-
         # Insert the new record into the TaxBreakDown table
         with db.cursor() as cursor:
-            cursor.execute('INSERT INTO TaxBreakDown (Company, Amount, PaymentDate, Status, DueDate) VALUES (%s, %s, %s, %s, %s)',
-                           (Company, Amount, PaymentDate, Status, DueDate))
+            cursor.execute("SELECT MAX(Id) AS MAXID FROM TaxBreakDown")
+            id_max = cursor.fetchone()
+            id_max2 = int(id_max['MAXID'])
+            Id = id_max2 + 1
+        with db.cursor() as cursor:
+            cursor.execute('INSERT INTO TaxBreakDown (Id, Company, Amount, PaymentDate, Status, DueDate) VALUES (%s, %s, %s, %s, %s, %s)',
+                           (Id, Company, Amount, PaymentDate, Status, DueDate))
             db.commit()
 
         return redirect('/')
@@ -96,8 +100,6 @@ def filter_data():
     cursor.execute(total)
     result = cursor.fetchone()
     total_sum = result['Amount'] if result and result.get('Amount') is not None else 0
-
-
     tax_due = total_sum * tax_Rate_decimal 
     formatted_tax_due = '{:.2f}'.format(tax_due).rstrip('0').rstrip('.')
     tax_Rate = int(tax_Rate_decimal * 100)
@@ -105,14 +107,11 @@ def filter_data():
 
     return render_template('/taxtable.html', filtered_data=filtered_data, total_sum=total_sum,tax_Rate = tax_Rate,tax_due = formatted_tax_due)
 
-
-
-
-@app.route('/tax/all')
-def tax():
-    cursor.execute("SELECT * FROM TaxBreakDown")
-    tax = cursor.fetchall()
-    return render_template('index.html', tax=tax)
+# @app.route('/tax/all')
+# def tax():
+#     cursor.execute("SELECT * FROM TaxBreakDown")
+#     tax = cursor.fetchall()
+#     return render_template('index.html', tax=tax)
 
 if __name__ == '__main__':
     app.run(debug=True)

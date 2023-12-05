@@ -1,0 +1,127 @@
+#summaryTableDiv {
+  margin-top: 20px;
+  max-height: 400px; /* Set the maximum height for the div */
+  overflow-y: auto; /* Enable vertical scroll */
+  border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+  }
+  #summaryTable {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+  }
+
+  #summaryTable th, #summaryTable td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+  }
+  #taxTable {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+  }
+
+  #taxTable th, #taxTable td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+  }
+
+
+
+
+
+    /* Reset some default styles */
+
+/* Add your existing styles */
+
+.editable {
+  cursor: pointer;
+  text-decoration: underline;
+  color: blue;
+}
+
+.editable input {
+  border: none;
+  outline: none;
+}
+
+
+
+
+/* Body styles */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 140vh;
+}
+
+/* Header styles */
+h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Links styles */
+a {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+a:hover {
+  background-color: #45a049;
+}
+#summaryTableDiv {
+  margin-top: 20px;
+  max-height: 400px; /* Set the maximum height for the div */
+  overflow-y: auto; /* Enable vertical scroll */
+  border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+  }
+#summaryTable {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+  }
+#taxTableDiv {
+    margin-top: 30px;
+    max-height: 800px; /* Set the maximum height for the div */
+    overflow-y: scroll; /* Enable vertical scroll */
+    border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+    }
+
+
+#summaryTable th, #summaryTable td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+  }
+#taxTable {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+  }
+#taxTable th, #taxTable td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+  }
+  
